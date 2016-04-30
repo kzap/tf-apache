@@ -6,7 +6,7 @@ provider "openstack" {
 }
 
 resource "openstack_compute_keypair_v2" "appserver_keypair" {
-  name = "appserver-keypair"
+  name = "${var.prefix}-keypair"
   region = "${var.region}"
   public_key = "${var.public_key}"
 }
@@ -18,12 +18,12 @@ resource "openstack_compute_floatingip_v2" "appserver_ip" {
 }
 */
 resource "openstack_compute_instance_v2" "appserver_node" {
-  name = "appserver-node-${count.index}"
+  name = "${var.prefix}-node-${count.index}"
   region = "${var.region}"
   image_id = "${lookup(var.image, var.region)}"
   flavor_id = "${lookup(var.flavor, var.region)}"
   #floating_ip = "${element(openstack_compute_floatingip_v2.appserver_ip.*.address,count.index)}"
-  key_pair = "appserver-keypair"
+  key_pair = "${var.prefix}-keypair"
   count = "${var.servers}"
 
     connection {
@@ -34,9 +34,9 @@ resource "openstack_compute_instance_v2" "appserver_node" {
 
     provisioner "remote-exec" {
         inline = [
-            "echo ${var.servers} > /tmp/app-server-count",
-            "echo ${count.index} > /tmp/app-server-index",
-            "echo ${openstack_compute_instance_v2.appserver_node.0.network.0.fixed_ip_v4} > /tmp/app-server-addr",
+            "echo ${var.servers} > /tmp/server-count",
+            "echo ${count.index} > /tmp/server-index",
+            "echo ${openstack_compute_instance_v2.appserver_node.0.network.0.fixed_ip_v4} > /tmp/server-addr",
         ]
     }
 
