@@ -8,6 +8,10 @@ variable "user_login" {
 }
 variable "key_file_path" {}
 
+variable "prefix" {
+    default = "apache"
+}
+
 variable "nb_of_nodes" {
     default = "4"
 }
