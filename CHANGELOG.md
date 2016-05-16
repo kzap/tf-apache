@@ -1,4 +1,9 @@
 
+0.2.2 / 2016-05-16
+==================
+
+  * adding image_id and flavor_id variables instead of lookup
+
 0.2 / 2016-04-30
 ================
 
