@@ -1,4 +1,12 @@
 
+0.3 / 2016-11-04
+================
+
+  * adding provisioner terraform files
+  * using openstack provider from kzap/terraform-modules
+  * - adding openstack example
+  * - moved openstack files into providers/openstack/app-server - moved provisioning scripts into provisioners/bash/centos-7/app-server/files
+
 0.2.5 / 2016-10-08
 ==================
 
