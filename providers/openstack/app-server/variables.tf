@@ -12,10 +12,6 @@ variable "prefix" {
     default = "apache"
 }
 
-variable "nb_of_nodes" {
-    default = "4"
-}
-
 variable "pub_net_id" {
     default = "PublicNetwork-01"
 }
@@ -34,7 +30,7 @@ variable "image_name" {
 }
 
 variable "flavor_id" {
-    default = "100"
+    default = "200"
 }
 
 variable "flavor_name" {
